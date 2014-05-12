@@ -11,8 +11,12 @@
 // End the loop 
 
 // Variables
-$WinNum = rand(1,100);
-$count = 1;
+
+$min = $argv[1];
+$max = $argv[2];
+
+$WinNum = rand($min,$max);
+$count = 1; 
 
 //Greeting
 
@@ -20,7 +24,7 @@ fwrite(STDOUT, 'What is your Name? ');
 
 $first_name = fgets(STDIN);
 
-fwrite(STDOUT, "Hello $first_name" . "I'm thinking of a number between 1 and 100.\nCan you guess which one it is?\n");
+fwrite(STDOUT, "Hello $first_name" . "I'm thinking of a number between $min and $max.\nCan you guess which one it is?\n");
 
 //While Loop equation
 
