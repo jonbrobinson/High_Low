@@ -1,46 +1,38 @@
 <?php
 
-// Create a number
-// while the user hasn't guess correctly
-	// promp user "guess a number"
-	// get number from user
-	// check the number and the guess
-	// if the guess is higher than thhe number then tell the user "lower"
-	// add to the guess count
-	// if the guess is lower than the number then tell the user "higher"
-// End the loop 
+define("MINIMUM", $argv[1]);
+define("MAXIMUM", $argv[2]);
 
-// Variables
+$random_number = mt_rand(MINIMUM, MAXIMUM);
+$guess_counter = 0;
 
-$min = $argv[1];
-$max = $argv[2];
+fwrite(STDOUT, "Guess the number between " . MINIMUM . " and " . MAXIMUM . "\n");
 
-$WinNum = rand($min,$max);
-$count = 1; 
+do {
 
-//Greeting
+	$user_guess = fgets(STDIN);
 
-fwrite(STDOUT, 'What is your Name? ');
-
-$first_name = fgets(STDIN);
-
-fwrite(STDOUT, "Hello $first_name" . "I'm thinking of a number between $min and $max.\nCan you guess which one it is?\n");
-
-//While Loop equation
-
-$user_guess = fgets(STDIN);
-
-while ($user_guess != $WinNum) {
-	$count++;
-	if ($user_guess < $WinNum) {
-		echo "Higher\n";
-		$user_guess = fgets(STDIN);
+	if ($user_guess < $random_number){
+		fwrite(STDOUT, "higher\n");
 	}
-	else {
-		echo "Lower\n";
-		$user_guess = fgets(STDIN);
+	elseif ($user_guess > $random_number) {
+		fwrite(STDOUT, "lower\n");
 	}
-	
-}
+	$guess_counter++;
+} while ($random_number != $user_guess);
 
-	echo "Winner Winner, Chicken Dinner. Only $count guesses to get it right." . PHP_EOL;
+fwrite(STDOUT,"Winner. It only took you $guess_counter tries to get it\n");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
